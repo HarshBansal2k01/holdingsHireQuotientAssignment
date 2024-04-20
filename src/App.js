@@ -12,8 +12,8 @@ import {
   TableHead,
   TableRow,
   Paper
-} from "@material-ui/core";
-import { KeyboardArrowDown as KeyboardArrowDownIcon, KeyboardArrowUp as KeyboardArrowUpIcon } from "@material-ui/icons";
+} from '@mui/material';
+import { KeyboardArrowDown as KeyboardArrowDownIcon, KeyboardArrowUp as KeyboardArrowUpIcon } from '@mui/icons-material';
 
 import "./App.css";
 

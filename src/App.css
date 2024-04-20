@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+.holdings-table-container {
+  margin: 20px;
+}
+
+.holdings-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.holdings-table th,
+.holdings-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.holdings-table th {
+  background-color: #f2f2f2;
+}

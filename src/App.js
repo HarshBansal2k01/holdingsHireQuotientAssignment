@@ -1,5 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import {
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper
+} from "@material-ui/core";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import "./App.css";
 
@@ -29,38 +43,49 @@ function App() {
     acc[asset_class].push(holding);
     return acc;
   }, {});
+
   return (
-    <div className="holdings-table-container">
-      <h1>Holdings Table</h1>
+    <div>
+      <h1>Holdings Viewers</h1>
       {Object.entries(groupedHoldings).map(([assetClass, holdings]) => (
-        <div key={assetClass}>
-          <h2>{assetClass}</h2>
-          <table className="holdings-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Ticker</th>
-                <th>Average Price</th>
-                <th>Market Price</th>
-                <th>Latest Change Percentage</th>
-                <th>Market Value (Base CCY)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {holdings.map((holding, index) => (
-                <tr key={index}>
-                  <td>{holding.name}</td>
-                  <td>{holding.ticker}</td>
-                  <td>{holding.avg_price}</td>
-                  <td>{holding.market_price}</td>
-                  <td>{holding.latest_chg_pct}</td>
-                  <td>{holding.market_value_ccy}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      ))}{" "}
+        <Accordion key={assetClass}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls={`${assetClass}-content`}
+            id={`${assetClass}-header`}
+          >
+            <Typography variant="h5">{assetClass}</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <TableContainer component={Paper}>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Name</TableCell>
+                    <TableCell>Ticker</TableCell>
+                    <TableCell>Average Price</TableCell>
+                    <TableCell>Market Price</TableCell>
+                    <TableCell>Latest Change Percentage</TableCell>
+                    <TableCell>Market Value (Base CCY)</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {holdings.map((holding, index) => (
+                    <TableRow key={index}>
+                      <TableCell>{holding.name}</TableCell>
+                      <TableCell>{holding.ticker}</TableCell>
+                      <TableCell>{holding.avg_price}</TableCell>
+                      <TableCell>{holding.market_price}</TableCell>
+                      <TableCell>{holding.latest_chg_pct}</TableCell>
+                      <TableCell>{holding.market_value_ccy}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </AccordionDetails>
+        </Accordion>
+      ))}
     </div>
   );
 }

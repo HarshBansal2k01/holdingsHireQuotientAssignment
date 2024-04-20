@@ -13,7 +13,7 @@ import {
   TableRow,
   Paper
 } from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { KeyboardArrowDown as KeyboardArrowDownIcon, KeyboardArrowUp as KeyboardArrowUpIcon } from "@material-ui/icons";
 
 import "./App.css";
 
@@ -46,13 +46,12 @@ function App() {
 
   return (
     <div>
-      <h1>Holdings Viewers</h1>
+      <h1 style={{textAlign:"center"}}>Holdings Viewers</h1>
       {Object.entries(groupedHoldings).map(([assetClass, holdings]) => (
         <Accordion key={assetClass}>
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls={`${assetClass}-content`}
-            id={`${assetClass}-header`}
+            expandIcon={<KeyboardArrowDownIcon />}
+            collapseIcon={<KeyboardArrowUpIcon />}
           >
             <Typography variant="h5">{assetClass}</Typography>
           </AccordionSummary>
